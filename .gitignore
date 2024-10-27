@@ -1,0 +1,7 @@
+#Dependences
+/backend/node_modules
+/frontend/node_modules
+
+#Production
+/frontend/build
+/frontend/buildServer
