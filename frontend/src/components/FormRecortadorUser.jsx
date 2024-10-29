@@ -6,9 +6,11 @@ import { URI } from "../Uri";
 import QRCode from "react-qr-code";
 
 
+
 function FormRecortadorUser() {
     const [url, setUrl] = useState("");
     const [urlRecortada, setUrlRecortada] = useState("");
+
 
 
     const { register,
@@ -25,7 +27,6 @@ function FormRecortadorUser() {
         const respuesta = await cut(data.url);
         if (respuesta?.code) {
             setUrlRecortada(respuesta);
-            console.log(respuesta.newUrl)
         }
         reset();
     });

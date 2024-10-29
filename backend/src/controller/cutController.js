@@ -55,7 +55,7 @@ export const updateUrl = async (req, res) => {
     existingUrl.clickLimit = clickLimit || existingUrl.clickLimit;
     existingUrl.expiresAt = expiresAt || existingUrl.expiresAt;
 
-    // Guardar los cambios
+
     const updatedUrl = await existingUrl.save();
 
 
@@ -66,3 +66,16 @@ export const updateUrl = async (req, res) => {
   }
 }
 
+export const deleteUrl = async (req, res) => {
+  const { _id } = req.body;
+
+  if (!_id) {
+    return res.status(400).json({ msj: "need id" });
+  }
+
+  if (await urls.findByIdAndDelete(_id)) {
+    return res.status(200).json({ msj: "Url eliminada exitosamente" });
+  } else {
+    return res.status(400).json({ msj: "no se pudo eliminar la url" });
+  }
+}

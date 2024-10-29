@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { stateCompo } from "../context/stateCompo";
 import { URI } from "../Uri";
 
+
 const useFormExpiraciones = (idurl) => {
     const [agregarClave, setagregarClave] = useState(false);
     const [clave, setClave] = useState('');
@@ -10,7 +11,10 @@ const useFormExpiraciones = (idurl) => {
     const [agregarFechaLimite, setAgregarFechaLimite] = useState(false);
     const [fechaLimite, setFechaLimite] = useState();
 
+
     const { dataUser } = useContext(stateCompo);
+
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -44,7 +48,8 @@ const useFormExpiraciones = (idurl) => {
             const result = await resp.json();
 
             if (resp.ok) {
-                alert("Datos guardados exitosamente.");
+                alert("guardado exitoso")
+
             } else {
                 alert("Error al guardar los datos: " + result.message);
             }

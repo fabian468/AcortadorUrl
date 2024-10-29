@@ -7,6 +7,7 @@ export const useListUrlUser = () => {
     const [urlUser, setUrlUser] = useState([]);
     const { dataUser } = useContext(stateCompo);
 
+
     useEffect(() => {
         const urldatos = async (idUser) => {
             if (idUser) {
@@ -18,5 +19,16 @@ export const useListUrlUser = () => {
         urldatos(dataUser.uid);
     }, [dataUser]);
 
-    return { urlUser }
+    const removeUrlById = (id) => {
+        setUrlUser(prevUrls => prevUrls.filter(url => url._id !== id));
+    };
+
+
+    const addUrlUser = async (newUser) => {
+
+        setUrlUser((prevUrls) => [...prevUrls, newUser])
+        console.log(urlUser)
+    };
+
+    return { urlUser, removeUrlById, addUrlUser }
 }

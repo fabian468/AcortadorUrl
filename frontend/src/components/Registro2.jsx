@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom"
-import InputForms from "./InputForms"
+import { Link } from "react-router-dom";
+import InputForms from "./InputForms";
 import { useState } from "react";
 import useAuthRedirect from "../hooks/useAuthRedirect";
 import useRegister from "../hooks/useRegister";
@@ -26,9 +26,10 @@ function Registro2() {
         await registerUser(email, password, nombre);
     };
 
+
     return (
 
-        <section className=" absolute shadow-xl shadow-gray-400 p-7 top-24 left-5 h-auto w-1/4 text-white rounded-xl bg-gray-600 text-center">
+        <section className=" absolute shadow-xl shadow-gray-400 p-7 top-24 left-5 h-auto  text-white rounded-xl bg-gray-600 text-center">
             <p className="text-3xl mb-9">Registrate</p>
 
             <form onSubmit={handleRegister} className="flex gap-8 justify-center items-center flex-col" >
@@ -41,7 +42,6 @@ function Registro2() {
             {error && <p style={{ color: 'red' }}>{error}</p>}
             <Link to={"login"}>ya tengo cuenta</Link>
         </section>
-
     )
 }
 

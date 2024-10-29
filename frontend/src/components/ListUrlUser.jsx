@@ -1,10 +1,17 @@
 import { Link } from "react-router-dom";
 import { useListUrlUser } from "../hooks/useListUrlUser";
 import { URI } from "../Uri";
+import { MdDeleteForever } from "react-icons/md";
+import { deleteUrl } from "../services/deleteUrl";
 
 function ListUrlUser() {
 
-    const { urlUser } = useListUrlUser()
+    const { urlUser, removeUrlById } = useListUrlUser()
+
+    const dropUrl = (id) => {
+        removeUrlById(id)
+        deleteUrl(id)
+    }
 
     return (
         <section className="overflow-y-auto w-full h-[90vh] bg-gray-200">
@@ -12,11 +19,12 @@ function ListUrlUser() {
                 {urlUser.length > 0 ? (
                     urlUser.map((urlsUser) => (
 
-                        <li key={urlsUser._id} className="overflow-hidden rounded-lg h-48 flex flex-col gap-2 p-2  bg-white w-96">
+                        <li key={urlsUser._id} className="overflow-hidden relative rounded-lg h-48 flex flex-col gap-2 p-2  bg-white w-96">
                             <p><span className="font-bold">Url original:</span>  {urlsUser.url}</p>
                             <p><span className="font-bold">Url acortada: </span><span className="text-fuchsia-600">{URI + urlsUser.code}</span></p>
                             <p><span className="font-bold">Números de click: </span>{urlsUser.countClick}</p>
-                            <Link to={urlsUser._id} >Más info</Link>
+                            <Link to={urlsUser._id} className="absolute right-5 bottom-4 hover:text-blue-500 font-medium text-lg" >Más info</Link>
+                            <span onClick={() => dropUrl(urlsUser._id)} className="absolute left-20 bottom-5 cursor-pointer hover:text-red-500"><MdDeleteForever className="w-20" /></span>
                         </li>
 
                     ))
