@@ -19,7 +19,7 @@ function Nav({ nombre }) {
 
 
     return (
-        <nav className="fixed w-auto right-0">
+        <nav className="md:fixed absolute w-auto right-0 z-40 " >
 
             <div className=" mr-8 mt-6 " >
                 <Link onClick={handleLogout} to={"login"} className="flex justify-end items-center  gap-2">

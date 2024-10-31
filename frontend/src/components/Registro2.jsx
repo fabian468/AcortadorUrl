@@ -40,7 +40,7 @@ function Registro2() {
                 <button className="bg-green-400 p-2 text-gray-800 w-60 rounded-xl mb-6"> Acceder </button>
             </form>
             {error && <p style={{ color: 'red' }}>{error}</p>}
-            <Link to={"login"}>ya tengo cuenta</Link>
+            <Link className="md:block hidden" to={"login"}>ya tengo cuenta</Link>
         </section>
     )
 }

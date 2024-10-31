@@ -3,8 +3,9 @@ import { useListUrlUser } from "../hooks/useListUrlUser";
 import { URI } from "../Uri";
 import { MdDeleteForever } from "react-icons/md";
 import { deleteUrl } from "../services/deleteUrl";
+import PropTypes from 'prop-types';
 
-function ListUrlUser() {
+function ListUrlUser({ setMisUrls }) {
 
     const { urlUser, removeUrlById } = useListUrlUser()
 
@@ -23,8 +24,11 @@ function ListUrlUser() {
                             <p><span className="font-bold">Url original:</span>  {urlsUser.url}</p>
                             <p><span className="font-bold">Url acortada: </span><span className="text-fuchsia-600">{URI + urlsUser.code}</span></p>
                             <p><span className="font-bold">Números de click: </span>{urlsUser.countClick}</p>
-                            <Link to={urlsUser._id} className="absolute right-5 bottom-4 hover:text-blue-500 font-medium text-lg" >Más info</Link>
-                            <span onClick={() => dropUrl(urlsUser._id)} className="absolute left-20 bottom-5 cursor-pointer hover:text-red-500"><MdDeleteForever className="w-20" /></span>
+                            <Link onClick={() => setMisUrls(false)} to={urlsUser._id} className="absolute right-5 bottom-4 hover:text-blue-500 font-medium text-lg" >Más info</Link>
+                            <span onClick={() => { dropUrl(urlsUser._id) }}
+                                className="absolute left-20 bottom-5 cursor-pointer hover:text-red-500">
+                                <MdDeleteForever className="w-20" />
+                            </span>
                         </li>
 
                     ))
@@ -35,5 +39,10 @@ function ListUrlUser() {
         </section>
     );
 }
+
+ListUrlUser.propTypes = {
+    setMisUrls: PropTypes.func,
+};
+
 
 export default ListUrlUser;

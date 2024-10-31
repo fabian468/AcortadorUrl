@@ -3,11 +3,15 @@ import { cut } from "../services/cut";
 import { useState } from "react";
 import { URI } from "../Uri";
 import QRCode from "react-qr-code";
+import PropTypes from 'prop-types';
+import { useNavigate } from "react-router-dom";
 
 
-function FormRecortador() {
+function FormRecortador({ Menu, setMenu, menuLogin, setMenuLogin }) {
     const [url, setUrl] = useState("");
     const [urlRecortada, setUrlRecortada] = useState("");
+
+    const navigate = useNavigate()
 
     const { register,
         handleSubmit,
@@ -29,7 +33,15 @@ function FormRecortador() {
 
     return (
 
-        <main className='flex justify-center items-center w-full h-[100vh] bg-gray-100 '>
+        <main className='relative flex justify-center items-center w-full h-[100vh] bg-gray-100 '>
+
+            <p onClick={() => {
+                navigate('/')
+                setMenuLogin(false)
+                setMenu(!Menu)
+            }} className=" md:hidden absolute top-4 left-4">
+                Registrate
+            </p>
 
 
             <div className="flex   justify-center items-center flex-col sm:block sm:w-[40%]" >
@@ -70,10 +82,25 @@ function FormRecortador() {
 
                     <span className="w-60">Url Acortada: {urlRecortada && <a target="_blanck" href={URI + urlRecortada}>{URI + urlRecortada}</a>}</span>
                     {urlRecortada && <QRCode value={URI + urlRecortada} style={{ background: 'black' }} />}
+                    <p onClick={() => {
+                        navigate('/login')
+                        setMenu(false)
+                        setMenuLogin(!menuLogin)
+                    }} className=" md:hidden text-center m-10">
+                        Inicia sesión
+                    </p>
                 </div>
             </div>
+
         </main>
     );
 }
+
+FormRecortador.propTypes = {
+    Menu: PropTypes.bool,
+    setMenu: PropTypes.func,
+    menuLogin: PropTypes.bool,
+    setMenuLogin: PropTypes.func,
+};
 
 export default FormRecortador;

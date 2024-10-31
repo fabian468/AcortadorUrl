@@ -3,7 +3,7 @@ import { cut } from "../services/cut";
 import { useState } from "react";
 import FormExpiraciones from "./FormExpiraciones";
 import { URI } from "../Uri";
-import QRCode from "react-qr-code";
+import QRCodeComponent from "./QRCodeComponent";
 
 
 
@@ -34,8 +34,6 @@ function FormRecortadorUser() {
     return (
 
         <main className='flex justify-center items-center w-full h-[100vh] bg-gray-100 overflow-auto'>
-
-
             <div className="flex   justify-center items-center flex-col sm:block sm:w-[40%]" >
                 <label htmlFor="url" className="block  sm:text-left  sm:text-7xl text-center text-4xl  font-serif  leading-6 mb-9  text-gray-900">Acorta tu URL</label>
                 <form className="flex w-60 sm:w-auto gap-3 mt-2 sm:flex-row flex-col" onSubmit={onSubmit}>
@@ -77,16 +75,10 @@ function FormRecortadorUser() {
 
                 <span className="w-60">Url acortada: {urlRecortada && <a target="_blanck" href={URI + urlRecortada.code}>{URI + urlRecortada.code}</a>}</span>
 
-                {urlRecortada &&
-                    < div style={{ height: "auto", margin: "0 auto", maxWidth: 150, width: "100%" }} >
-                        < QRCode
-                            size={800}
-                            style={{ height: "auto", maxWidth: "100%", width: "100%" }}
-                            value={URI + urlRecortada.code}
-                            viewBox={`0 0 256 256`}
-                        />
-                    </div>
-                }
+                <p className="mt-10">Haz click sobre el código QR para descargar</p>
+                <div className="md:flex  gap-4  md:items-center">
+                    <QRCodeComponent URI={URI} datosUrlUnitarios={urlRecortada.code} />
+                </div>
 
             </div>
         </main>

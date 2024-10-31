@@ -37,6 +37,8 @@ export const updateUrl = async (req, res) => {
   try {
     const { _id, uid, passwordUrl, clickLimit, expiresAt } = req.body;
 
+    console.log(_id, uid, passwordUrl, clickLimit, expiresAt)
+
     if (!_id) {
       return res.status(400).json({ msj: "id not found" });
     }

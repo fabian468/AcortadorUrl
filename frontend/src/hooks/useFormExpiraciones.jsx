@@ -24,15 +24,15 @@ const useFormExpiraciones = (idurl) => {
             uid: dataUser.uid
         };
 
-        if (agregarClave && clave) {
+        if (clave) {
             data.passwordUrl = clave;
         }
 
-        if (agregarClickLimite && clickLimite) {
+        if (clickLimite) {
             data.clickLimit = parseInt(clickLimite);
         }
 
-        if (agregarFechaLimite && fechaLimite) {
+        if (fechaLimite) {
             data.expiresAt = new Date(fechaLimite).toISOString();
         }
 
